@@ -1,5 +1,5 @@
 {
-  "name": "renderer",
+  "name": "@dailykit/webRenderer",
   "version": "1.0.0",
   "description": "Render html with css and js",
   "main": "index.js",
