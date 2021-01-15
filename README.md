@@ -7,13 +7,13 @@ Render Html, Css and Js by injecting it into dom.
 Using npm:
 
 ```bash
-$ npm install webRenderer
+$ npm install @dailykit/web-renderer
 ```
 
 Using yarn:
 
 ```bash
-$ yarn add webRenderer
+$ yarn add @dailykit/web-renderer
 ```
 
 ## Getting Started
