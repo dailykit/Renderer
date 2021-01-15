@@ -3,7 +3,14 @@ const axios = require("axios");
 
 const isBrowser = require("../../../utils/envDetection");
 
-const html = async ({ type, fileId, filePath, fileContent, elementId }) => {
+const html = async ({
+  type,
+  config,
+  fileId,
+  filePath,
+  fileContent,
+  elementId,
+}) => {
   if (isBrowser()) {
     if (filePath.length) {
       (async () => {
@@ -33,8 +40,7 @@ const html = async ({ type, fileId, filePath, fileContent, elementId }) => {
     }
 
     if (fileId.length) {
-      console.log("running..");
-      const pathArray = await getFilePath(fileId);
+      const pathArray = await getFilePath(fileId, config);
       const htmlContents = await Promise.all(
         pathArray.map(async (path) => {
           try {
@@ -65,7 +71,6 @@ const html = async ({ type, fileId, filePath, fileContent, elementId }) => {
           document.getElementById(elementId).innerHTML = content;
         } else {
           const htmlNode = document.createElement("div");
-          console.log(htmlNode);
           htmlNode.className = `${type}-container-${index}`;
           htmlNode.innerHTML = content;
           document.body.appendChild(htmlNode);

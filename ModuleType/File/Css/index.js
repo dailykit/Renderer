@@ -1,6 +1,6 @@
 const { getFilePath } = require("../../../Query");
 const isBrowser = require("../../../utils/envDetection");
-const css = async ({ type, cssId, cssPath, cssContent }) => {
+const css = async ({ type, config, cssId, cssPath, cssContent }) => {
   if (isBrowser()) {
     if (cssPath.length) {
       cssPath.forEach((path) => {
@@ -12,7 +12,7 @@ const css = async ({ type, cssId, cssPath, cssContent }) => {
       });
     }
     if (cssId.length) {
-      const pathArray = await getFilePath(cssId);
+      const pathArray = await getFilePath(cssId, config);
       pathArray.forEach((path) => {
         const linkNode = document.createElement("link");
         linkNode.href = `https://test.dailykit.org/template/files${path}`;

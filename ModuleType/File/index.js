@@ -3,6 +3,7 @@ const js = require("./Js");
 const css = require("./Css");
 const renderfile = ({
   type = null,
+  config = null,
   elementId = null,
   filePath = [],
   fileId = [],
@@ -14,9 +15,9 @@ const renderfile = ({
   jsId = [],
   jsContent = [],
 }) => {
-  css({ type, cssId, cssPath, cssContent });
-  html({ type, elementId, fileId, filePath, fileContent });
-  js({ type, jsId, jsPath, jsContent });
+  css({ type, config, cssId, cssPath, cssContent });
+  html({ type, config, elementId, fileId, filePath, fileContent });
+  js({ type, config, jsId, jsPath, jsContent });
 };
 
 module.exports = { renderfile };
