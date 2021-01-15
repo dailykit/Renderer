@@ -19,9 +19,9 @@ $ yarn add @dailykit/web-renderer
 ## Getting Started
 
 ```js
-const { webRenderer } = require("webRenderer");
+const { webRenderer } = require("@dailykit/web-renderer");
 or;
-import { webRenderer } from "webRenderer";
+import { webRenderer } from "@dailykit/web-renderer";
 ```
 
 Rendering the html,css and js
