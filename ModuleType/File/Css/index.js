@@ -5,7 +5,7 @@ const css = async ({ type, cssId, cssPath, cssContent }) => {
     if (cssPath.length) {
       cssPath.forEach((path) => {
         const linkNode = document.createElement("link");
-        linkNode.href = path;
+        linkNode.href = `https://test.dailykit.org/template/files${path}`;
         linkNode.rel = "stylesheet";
         linkNode.type = "text/css";
         document.head.appendChild(linkNode);
@@ -15,7 +15,7 @@ const css = async ({ type, cssId, cssPath, cssContent }) => {
       const pathArray = await getFilePath(cssId);
       pathArray.forEach((path) => {
         const linkNode = document.createElement("link");
-        linkNode.href = path;
+        linkNode.href = `https://test.dailykit.org/template/files${path}`;
         linkNode.rel = "stylesheet";
         linkNode.type = "text/css";
         document.head.appendChild(linkNode);
@@ -23,9 +23,9 @@ const css = async ({ type, cssId, cssPath, cssContent }) => {
     }
 
     if (cssContent.length) {
-      cssContent.forEach((content) => {
+      cssContent.forEach((content, index) => {
         const styleNode = document.createElement("style");
-        styleNode.className = `${type}-styleContainer`;
+        styleNode.className = `${type}-styleContainer-${index}`;
         styleNode.innerHTML = content;
         document.head.appendChild(styleNode);
       });

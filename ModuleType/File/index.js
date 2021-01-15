@@ -1,4 +1,3 @@
-require("dotenv").config();
 const html = require("./Html");
 const js = require("./Js");
 const css = require("./Css");

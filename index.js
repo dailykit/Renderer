@@ -1,5 +1,13 @@
 require("dotenv").config();
 const { renderfile } = require("./ModuleType");
+// const fs = require("fs");
+// const config = ({ uri, adminSecret }) => {
+//   const configContent = `module.exports = {uri:"${uri}",adminSecret:"${adminSecret}"} `;
+//   fs.writeFile("config.js", configContent, function (err) {
+//     if (err) throw err;
+//     console.log("Saved!");
+//   });
+// };
 const renderer = ({
   type,
   elementId,
@@ -39,4 +47,4 @@ const renderer = ({
   }
 };
 
-module.exports = renderer;
+module.exports = { renderer };

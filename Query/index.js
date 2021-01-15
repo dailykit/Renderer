@@ -1,11 +1,10 @@
 const axios = require("axios");
 const getFilePath = async (ids) => {
-  console.log(ids);
   const pathArray = await Promise.all(
     ids.map(async (ids) => {
       try {
-        const { data, status } = await fetch({
-          url: process.env.DATA_HUB_URI,
+        const { data, status } = await axios({
+          url: process.env.DATA_HUB_URI,,
           method: "POST",
           headers: {
             "x-hasura-admin-secret": process.env.HASURA_GRAPHQL_ADMIN_SECRET,
@@ -30,7 +29,7 @@ const getFilePath = async (ids) => {
           const result = data.data.editor_file.map((file) => {
             return file.path;
           });
-          //   console.log(result);
+          console.log(result);
           return result;
         }
       } catch (error) {

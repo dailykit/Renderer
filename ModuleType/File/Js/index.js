@@ -6,7 +6,7 @@ const js = async ({ type, jsId, jsPath, jsContent }) => {
     if (jsPath.length) {
       jsPath.forEach((path) => {
         const scriptNode = document.createElement("script");
-        scriptNode.src = path;
+        scriptNode.src = `https://test.dailykit.org/template/files${path}`;
         scriptNode.type = "text/javascript";
         scriptNode.async = true;
         document.body.appendChild(scriptNode);
@@ -17,7 +17,7 @@ const js = async ({ type, jsId, jsPath, jsContent }) => {
       const pathArray = await getFilePath(jsId);
       pathArray.forEach((path) => {
         const scriptNode = document.createElement("script");
-        scriptNode.src = path;
+        scriptNode.src = `https://test.dailykit.org/template/files${path}`;
         scriptNode.type = "text/javascript";
         scriptNode.async = true;
         document.body.appendChild(scriptNode);
@@ -25,10 +25,11 @@ const js = async ({ type, jsId, jsPath, jsContent }) => {
     }
 
     if (jsContent.length) {
-      jsContent.forEach((content) => {
+      jsContent.forEach((content, index) => {
         const scriptNode = document.createElement("script");
-        scriptNode.className = `${type}-scriptContainer`;
+        scriptNode.className = `${type}-scriptContainer-${index}`;
         scriptNode.innerHTML = content;
+        console.log(scriptNode);
         document.body.appendChild(scriptNode);
       });
     }

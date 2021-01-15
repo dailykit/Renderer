@@ -10,19 +10,21 @@ const html = async ({ type, fileId, filePath, fileContent, elementId }) => {
         const htmlContents = await Promise.all(
           filePath.map(async (path) => {
             try {
-              const { data } = await axios.get(path);
+              const { data } = await axios.get(
+                `https://test.dailykit.org/template/files${path}`
+              );
               return data;
             } catch (error) {
               console.log(error);
             }
           })
         );
-        htmlContents.forEach((content) => {
+        htmlContents.forEach((content, index) => {
           if (elementId) {
             document.getElementById(elementId).innerHTML = content;
           } else {
             const htmlNode = document.createElement("div");
-            htmlNode.className = `${type}-container`;
+            htmlNode.className = `${type}-container-${index}`;
             htmlNode.innerHTML = content;
             document.body.appendChild(htmlNode);
           }
@@ -36,19 +38,21 @@ const html = async ({ type, fileId, filePath, fileContent, elementId }) => {
       const htmlContents = await Promise.all(
         pathArray.map(async (path) => {
           try {
-            const { data } = await axios.get(path);
+            const { data } = await axios.get(
+              `https://test.dailykit.org/template/files${path}`
+            );
             return data;
           } catch (error) {
             console.log(error);
           }
         })
       );
-      htmlContents.forEach((content) => {
+      htmlContents.forEach((content, index) => {
         if (elementId) {
-          document.getElementById(elementId).innerHTML = content;
+          document.getElementById(elementId).innerHTML += content;
         } else {
           const htmlNode = document.createElement("div");
-          htmlNode.className = `${type}-container`;
+          htmlNode.className = `${type}-container-${index}`;
           htmlNode.innerHTML = content;
           document.body.appendChild(htmlNode);
         }
@@ -56,13 +60,13 @@ const html = async ({ type, fileId, filePath, fileContent, elementId }) => {
     }
 
     if (fileContent.length) {
-      fileContent.forEach((content) => {
+      fileContent.forEach((content, index) => {
         if (elementId) {
           document.getElementById(elementId).innerHTML = content;
         } else {
           const htmlNode = document.createElement("div");
           console.log(htmlNode);
-          htmlNode.className = `${type}-container`;
+          htmlNode.className = `${type}-container-${index}`;
           htmlNode.innerHTML = content;
           document.body.appendChild(htmlNode);
         }
