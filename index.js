@@ -1,5 +1,5 @@
 const { renderfile } = require("./ModuleType");
-const renderer = ({
+const webRenderer = ({
   type,
   config,
   elementId,
@@ -40,4 +40,4 @@ const renderer = ({
   }
 };
 
-module.exports = { renderer };
+module.exports = { webRenderer };
