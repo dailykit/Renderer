@@ -3,19 +3,40 @@ const axios = require("axios");
 
 const isBrowser = require("../../../utils/envDetection");
 
-const html = async ({
-  type,
-  config,
-  fileId,
-  filePath,
-  fileContent,
-  elementId,
-}) => {
+const html = async ({ type, config, fileDetails }) => {
   if (isBrowser()) {
-    if (filePath.length) {
-      (async () => {
+    fileDetails.forEach(async (fileDetail) => {
+      if (fileDetail.filePath.length) {
+        (async () => {
+          const htmlContents = await Promise.all(
+            fileDetail.filePath.map(async (path) => {
+              try {
+                const { data } = await axios.get(
+                  `https://test.dailykit.org/template/files${path}`
+                );
+                return data;
+              } catch (error) {
+                console.log(error);
+              }
+            })
+          );
+          htmlContents.forEach((content, index) => {
+            if (fileDetail.elementId) {
+              document.getElementById(fileDetail.elementId).innerHTML = content;
+            } else {
+              const htmlNode = document.createElement("div");
+              htmlNode.className = `${type}-container-${index}`;
+              htmlNode.innerHTML = content;
+              document.body.appendChild(htmlNode);
+            }
+          });
+        })();
+      }
+
+      if (fileDetail.fileId.length) {
+        const pathArray = await getFilePath(fileDetail.fileId, config);
         const htmlContents = await Promise.all(
-          filePath.map(async (path) => {
+          pathArray.map(async (path) => {
             try {
               const { data } = await axios.get(
                 `https://test.dailykit.org/template/files${path}`
@@ -27,8 +48,8 @@ const html = async ({
           })
         );
         htmlContents.forEach((content, index) => {
-          if (elementId) {
-            document.getElementById(elementId).innerHTML = content;
+          if (fileDetail.elementId) {
+            document.getElementById(fileDetail.elementId).innerHTML += content;
           } else {
             const htmlNode = document.createElement("div");
             htmlNode.className = `${type}-container-${index}`;
@@ -36,47 +57,21 @@ const html = async ({
             document.body.appendChild(htmlNode);
           }
         });
-      })();
-    }
+      }
 
-    if (fileId.length) {
-      const pathArray = await getFilePath(fileId, config);
-      const htmlContents = await Promise.all(
-        pathArray.map(async (path) => {
-          try {
-            const { data } = await axios.get(
-              `https://test.dailykit.org/template/files${path}`
-            );
-            return data;
-          } catch (error) {
-            console.log(error);
+      if (fileDetail.fileContent.length) {
+        fileDetail.fileContent.forEach((content, index) => {
+          if (fileDetail.elementId) {
+            document.getElementById(fileDetail.elementId).innerHTML = content;
+          } else {
+            const htmlNode = document.createElement("div");
+            htmlNode.className = `${type}-container-${index}`;
+            htmlNode.innerHTML = content;
+            document.body.appendChild(htmlNode);
           }
-        })
-      );
-      htmlContents.forEach((content, index) => {
-        if (elementId) {
-          document.getElementById(elementId).innerHTML += content;
-        } else {
-          const htmlNode = document.createElement("div");
-          htmlNode.className = `${type}-container-${index}`;
-          htmlNode.innerHTML = content;
-          document.body.appendChild(htmlNode);
-        }
-      });
-    }
-
-    if (fileContent.length) {
-      fileContent.forEach((content, index) => {
-        if (elementId) {
-          document.getElementById(elementId).innerHTML = content;
-        } else {
-          const htmlNode = document.createElement("div");
-          htmlNode.className = `${type}-container-${index}`;
-          htmlNode.innerHTML = content;
-          document.body.appendChild(htmlNode);
-        }
-      });
-    }
+        });
+      }
+    });
   }
 };
 
