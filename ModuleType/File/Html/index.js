@@ -6,7 +6,7 @@ const isBrowser = require("../../../utils/envDetection");
 const html = async ({ type, config, fileDetails }) => {
   if (isBrowser()) {
     fileDetails.forEach(async (fileDetail) => {
-      if (fileDetail.filePath.length) {
+      if (fileDetail.filePath && fileDetail.filePath.length) {
         (async () => {
           const htmlContents = await Promise.all(
             fileDetail.filePath.map(async (path) => {
@@ -33,7 +33,7 @@ const html = async ({ type, config, fileDetails }) => {
         })();
       }
 
-      if (fileDetail.fileId.length) {
+      if (fileDetail.fileId && fileDetail.fileId.length) {
         const pathArray = await getFilePath(fileDetail.fileId, config);
         const htmlContents = await Promise.all(
           pathArray.map(async (path) => {
@@ -59,7 +59,7 @@ const html = async ({ type, config, fileDetails }) => {
         });
       }
 
-      if (fileDetail.fileContent.length) {
+      if (fileDetail.fileContent && fileDetail.fileContent.length) {
         fileDetail.fileContent.forEach((content, index) => {
           if (fileDetail.elementId) {
             document.getElementById(fileDetail.elementId).innerHTML = content;

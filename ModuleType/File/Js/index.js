@@ -4,7 +4,7 @@ const isBrowser = require("../../../utils/envDetection");
 const js = async ({ type, config, fileDetails }) => {
   if (isBrowser()) {
     fileDetails.forEach(async (fileDetail) => {
-      if (fileDetail.jsPath.length) {
+      if (fileDetail.jsPath && fileDetail.jsPath.length) {
         fileDetail.jsPath.forEach((path) => {
           const scriptNode = document.createElement("script");
           scriptNode.src = `https://test.dailykit.org/template/files${path}`;
@@ -14,7 +14,7 @@ const js = async ({ type, config, fileDetails }) => {
         });
       }
 
-      if (fileDetail.jsId.length) {
+      if (fileDetail.jsId && fileDetail.jsId.length) {
         const pathArray = await getFilePath(fileDetail.jsId, config);
         pathArray.forEach((path) => {
           const scriptNode = document.createElement("script");
@@ -25,7 +25,7 @@ const js = async ({ type, config, fileDetails }) => {
         });
       }
 
-      if (fileDetail.jsContent.length) {
+      if (fileDetail.jsContent && fileDetail.jsContent.length) {
         fileDetail.jsContent.forEach((content, index) => {
           const scriptNode = document.createElement("script");
           scriptNode.className = `${type}-scriptContainer-${index}`;

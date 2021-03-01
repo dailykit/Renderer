@@ -3,7 +3,7 @@ const isBrowser = require("../../../utils/envDetection");
 const css = async ({ type, config, fileDetails }) => {
   if (isBrowser()) {
     fileDetails.forEach(async (fileDetail) => {
-      if (fileDetail.cssPath.length) {
+      if (fileDetail.cssPath && fileDetail.cssPath.length) {
         fileDetail.cssPath.forEach((path) => {
           const linkNode = document.createElement("link");
           linkNode.href = `https://test.dailykit.org/template/files${path}`;
@@ -12,7 +12,7 @@ const css = async ({ type, config, fileDetails }) => {
           document.head.appendChild(linkNode);
         });
       }
-      if (fileDetail.cssId.length) {
+      if (fileDetail.cssId && fileDetail.cssId.length) {
         const pathArray = await getFilePath(fileDetail.cssId, config);
         pathArray.forEach((path) => {
           const linkNode = document.createElement("link");
@@ -23,7 +23,7 @@ const css = async ({ type, config, fileDetails }) => {
         });
       }
 
-      if (fileDetail.cssContent.length) {
+      if (fileDetail.cssContent && fileDetail.cssContent.length) {
         fileDetail.cssContent.forEach((content, index) => {
           const styleNode = document.createElement("style");
           styleNode.className = `${type}-styleContainer-${index}`;
