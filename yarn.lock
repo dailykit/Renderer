@@ -2,3 +2,7 @@
 # yarn lockfile v1
 
 
+"@dailykit/web-renderer@1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@dailykit/web-renderer/-/web-renderer-1.0.6.tgz#91b149b86dd92c06869e8af5d0df74d535fb9fcd"
+  integrity sha512-2sj8JHhKqME1pmZX4mJKBf2fWgyBoZ50usu8dpVBXqVrNPuoh/Zf4CeWKbqcitl441os3bUukFfnFHDU2VHNLg==

@@ -18,5 +18,8 @@
   "homepage": "https://github.com/dailykit/Renderer#readme",
   "peerDependencies": {
     "axios": "^0.21.1"
+  },
+  "dependencies": {
+    "@dailykit/web-renderer": "1.0.6"
   }
 }
