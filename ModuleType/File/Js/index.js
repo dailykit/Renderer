@@ -7,7 +7,7 @@ const js = async ({ type, config, fileDetails }) => {
       if (fileDetail.jsPath && fileDetail.jsPath.length) {
         fileDetail.jsPath.forEach((path) => {
           const scriptNode = document.createElement("script");
-          scriptNode.src = `https://test.dailykit.org/template/files${path}`;
+          scriptNode.src = `${config.expressUrl}/template/files${path}`;
           scriptNode.type = "text/javascript";
           scriptNode.async = true;
           document.body.appendChild(scriptNode);
@@ -18,7 +18,7 @@ const js = async ({ type, config, fileDetails }) => {
         const pathArray = await getFilePath(fileDetail.jsId, config);
         pathArray.forEach((path) => {
           const scriptNode = document.createElement("script");
-          scriptNode.src = `https://test.dailykit.org/template/files${path}`;
+          scriptNode.src = `${config.expressUrl}/template/files${path}`;
           scriptNode.type = "text/javascript";
           scriptNode.async = true;
           document.body.appendChild(scriptNode);

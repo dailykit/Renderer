@@ -70,6 +70,7 @@ webRenderer({
   config: {
     uri: "test@test.com",
     adminSecret: "test@secret123",
+    expressUrl: "test@express.com",
   },
   fileDetails: [
     {

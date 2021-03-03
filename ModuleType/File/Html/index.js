@@ -12,7 +12,7 @@ const html = async ({ type, config, fileDetails }) => {
             fileDetail.filePath.map(async (path) => {
               try {
                 const { data } = await axios.get(
-                  `https://test.dailykit.org/template/files${path}`
+                  `${config.expressUrl}/template/files${path}`
                 );
                 return data;
               } catch (error) {
@@ -39,7 +39,7 @@ const html = async ({ type, config, fileDetails }) => {
           pathArray.map(async (path) => {
             try {
               const { data } = await axios.get(
-                `https://test.dailykit.org/template/files${path}`
+                `${config.expressUrl}/template/files${path}`
               );
               return data;
             } catch (error) {

@@ -6,7 +6,7 @@ const css = async ({ type, config, fileDetails }) => {
       if (fileDetail.cssPath && fileDetail.cssPath.length) {
         fileDetail.cssPath.forEach((path) => {
           const linkNode = document.createElement("link");
-          linkNode.href = `https://test.dailykit.org/template/files${path}`;
+          linkNode.href = `${config.expressUrl}/template/files${path}`;
           linkNode.rel = "stylesheet";
           linkNode.type = "text/css";
           document.head.appendChild(linkNode);
@@ -16,7 +16,7 @@ const css = async ({ type, config, fileDetails }) => {
         const pathArray = await getFilePath(fileDetail.cssId, config);
         pathArray.forEach((path) => {
           const linkNode = document.createElement("link");
-          linkNode.href = `https://test.dailykit.org/template/files${path}`;
+          linkNode.href = `${config.expressUrl}/template/files${path}`;
           linkNode.rel = "stylesheet";
           linkNode.type = "text/css";
           document.head.appendChild(linkNode);
