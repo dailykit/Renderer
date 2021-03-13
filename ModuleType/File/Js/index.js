@@ -9,7 +9,6 @@ const js = async ({ type, config, fileDetails }) => {
           const scriptNode = document.createElement("script");
           scriptNode.src = `${config.expressUrl}/template/files${path}`;
           scriptNode.type = "text/javascript";
-          scriptNode.async = true;
           document.body.appendChild(scriptNode);
         });
       }
@@ -20,7 +19,6 @@ const js = async ({ type, config, fileDetails }) => {
           const scriptNode = document.createElement("script");
           scriptNode.src = `${config.expressUrl}/template/files${path}`;
           scriptNode.type = "text/javascript";
-          scriptNode.async = true;
           document.body.appendChild(scriptNode);
         });
       }
