@@ -1,6 +1,6 @@
 {
   "name": "@dailykit/web-renderer",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Render html with css and js",
   "main": "index.js",
   "scripts": {
